@@ -1,0 +1,9 @@
+.DS_Store
+.dev.vars*
+.env*
+.next/
+.wrangler/
+coverage/
+node_modules/
+out/
+tsconfig.tsbuildinfo

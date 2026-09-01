@@ -1,0 +1,65 @@
+{
+  "assets": [
+    {
+      "file": "sangrep-favicon.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "f31e57eb46d52f45e8286faed0a2bccb2eaa3accde01787d6cd6daaf4b847817"
+    },
+    {
+      "file": "sangrep-lockup-dark.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "7ca7f6132ad98a80f190ae4f5de7ec9ceab07b584b0fc3ac3341a777b13f67b6"
+    },
+    {
+      "file": "sangrep-lockup.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "fe2faf04788bf3c15ec265843f644fafab7bf927c981a4d6d6d1c38380d2c178"
+    },
+    {
+      "file": "sangrep-mark-dark.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "bb4e10bd50d0e19d3af9367748b29e950e4e339d4a48bc2910a264d01956d10e"
+    },
+    {
+      "file": "sangrep-mark-mono.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "4bc8493fbc3ab47d9a13e1b60e85ab6cd6d8ccaa73724245db03aa6fd0dcccc6"
+    },
+    {
+      "file": "sangrep-mark.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "24971d935364b2575205bccee6a57bdd357e60726f17261109495cb5132e3c2e"
+    },
+    {
+      "file": "sangrep-tile-depth.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "b27bd7aaf3b40de4a791432c9c804e73a3e4ef90f85c0e0c05ff0de957d622b9"
+    },
+    {
+      "file": "sangrep-tile-ink.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "6e19e903930cee0c15028430595c5ab77afe237fedb62cfe27b4da3287ea0508"
+    },
+    {
+      "file": "sangrep-tile-light.svg",
+      "license": "LicenseRef-Sangrep-Brand-Content",
+      "provenance": "first-party",
+      "sha256": "70ec541c4afd601111501af2c439d78554850d006ee082e3eabb159f04cf2096"
+    }
+  ],
+  "copies": [
+    {
+      "file": "src/app/icon.svg",
+      "matches": "sangrep-favicon.svg"
+    }
+  ],
+  "schemaVersion": "sangrep.site.brand-provenance.v1"
+}

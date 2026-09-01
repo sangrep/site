@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" role="img" aria-label="sangrep">
+  <rect width="512" height="512" rx="37" fill="#0C0B1E"/>
+  <g transform="translate(138.24 138.24) scale(5.89)">
+    <rect x="14" y="8" width="22" height="5" rx="2.5" fill="#FFFFFF"/>
+    <rect x="6" y="16" width="18" height="5" rx="2.5" fill="#8078EE"/>
+    <rect x="14" y="24" width="11" height="5" rx="2.5" fill="#12B39C"/>
+    <rect x="6" y="32" width="18" height="5" rx="2.5" fill="#8078EE"/>
+  </g>
+</svg>

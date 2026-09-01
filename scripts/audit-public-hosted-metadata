@@ -19,6 +19,7 @@ sys.dont_write_bytecode = True
 from public_boundary_policy import (  # noqa: E402
     Finding,
     canonical_inventory_digest,
+    normalize_github_actions_log,
     scan_bytes,
 )
 
@@ -193,9 +194,14 @@ def _scan_zip(payload: bytes, *, source: str) -> tuple[list[Finding], dict[str, 
                 raise HostedAuditError("expanded hosted archive exceeds the audit budget")
             data = archive.read(info)
             entry_source = f"{source}:{info.filename}"
+            scanned_data = (
+                normalize_github_actions_log(data)
+                if source.startswith("workflow-log:")
+                else data
+            )
             findings.extend(
                 scan_bytes(
-                    data,
+                    scanned_data,
                     source=entry_source,
                     suffix=Path(info.filename).suffix,
                 )

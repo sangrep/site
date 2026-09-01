@@ -24,8 +24,11 @@ ALLOWED_BINARY_SUFFIXES = {
     ".jpg",
     ".mp4",
     ".png",
+    ".ttf",
     ".webm",
     ".webp",
+    ".woff",
+    ".woff2",
 }
 PROHIBITED_SUFFIXES = {
     ".crash",
@@ -147,6 +150,32 @@ SECRET_RULES = (
     ),
 )
 
+_GITHUB_ACTIONS_UUID = rb"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+_GITHUB_ACTIONS_PATH_RULES = (
+    (
+        re.compile(rb"/home/runner/work/site/site(?:/[A-Za-z0-9_.*+@%=-]+)*"),
+        b"<github-workspace>",
+    ),
+    (
+        re.compile(
+            rb"/home/runner/work/_temp/(?:"
+            + _GITHUB_ACTIONS_UUID
+            + rb"(?:/cache\.tzst)?|git-credentials-"
+            + _GITHUB_ACTIONS_UUID
+            + rb"\.config)"
+        ),
+        b"<github-temp>",
+    ),
+    (re.compile(rb"/home/runner/\.npm"), b"<github-npm-cache>"),
+)
+
+
+def normalize_github_actions_log(data: bytes) -> bytes:
+    normalized = data
+    for pattern, replacement in _GITHUB_ACTIONS_PATH_RULES:
+        normalized = pattern.sub(replacement, normalized)
+    return normalized
+
 
 def scan_text(text: str, *, source: str, include_restricted: bool = True) -> list[Finding]:
     record_id = opaque_record_id(source)
@@ -159,6 +188,19 @@ def scan_text(text: str, *, source: str, include_restricted: bool = True) -> lis
 
 
 def _valid_media(data: bytes, suffix: str) -> bool:
+    if suffix == ".ttf":
+        return (
+            len(data) >= 12
+            and data[:4] in {b"\x00\x01\x00\x00", b"OTTO", b"true", b"typ1"}
+            and int.from_bytes(data[4:6], "big") > 0
+        )
+    if suffix in {".woff", ".woff2"}:
+        signature = b"wOFF" if suffix == ".woff" else b"wOF2"
+        return (
+            len(data) >= 12
+            and data[:4] == signature
+            and int.from_bytes(data[8:12], "big") == len(data)
+        )
     if suffix == ".gif":
         return (
             len(data) >= 13
@@ -241,11 +283,14 @@ def scan_path(path: Path, *, source: str, include_restricted: bool = True) -> li
     except OSError:
         findings.append(Finding(category="unreadable-file", record_id=opaque_record_id(source)))
         return findings
+    suffix = path.suffix
+    if not suffix and path.as_posix() == "out/opengraph-image":
+        suffix = ".png"
     findings.extend(
         scan_bytes(
             data,
             source=source,
-            suffix=path.suffix,
+            suffix=suffix,
             include_restricted=include_restricted,
         )
     )

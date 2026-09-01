@@ -3,9 +3,18 @@ set -euo pipefail
 
 required=(
   README.md CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md SUPPORT.md GOVERNANCE.md
-  AGENTS.md LICENSE NOTICE .github/CODEOWNERS .github/PULL_REQUEST_TEMPLATE.md
-  scripts/check scripts/check-gitleaks scripts/check-public-boundary scripts/audit-public-hosted-metadata
-  scripts/public_boundary_policy.py
+  AGENTS.md LICENSE NOTICE ORIGIN.md TRADEMARKS.md THIRD_PARTY_NOTICES.md
+  LICENSES/Apache-2.0.txt LICENSES/LicenseRef-Sangrep-Brand-Content.txt
+  LICENSES/OFL-1.1.txt LICENSES/license-map.json
+  docs/README.md docs/content-policy.md docs/deployment.md
+  public/brand/README.md public/brand/provenance.json src/README.md
+  scripts/README.md scripts/check scripts/check-accessibility scripts/check-claims
+  scripts/check-gitleaks scripts/check-headers scripts/check-license scripts/check-links scripts/check-media
+  scripts/check-public-boundary scripts/run-public-check
+  scripts/audit-public-hosted-metadata scripts/public_boundary_policy.py
+  scripts/site-policy.mjs scripts/check-accessibility.mjs
+  scripts/test_public_boundary_policy.py
+  .github/CODEOWNERS .github/PULL_REQUEST_TEMPLATE.md
 )
 
 for path in "${required[@]}"; do
@@ -20,9 +29,32 @@ if (( $(wc -l < AGENTS.md) >= 120 )); then
   exit 1
 fi
 
+required_node="v$(tr -d '[:space:]' < .nvmrc)"
+if [[ "$(node --version)" != "$required_node" ]]; then
+  printf 'repository-check: wrong-node-version expected=%s\n' "$required_node" >&2
+  exit 1
+fi
+
 python3 -c 'import ast, pathlib, sys; [ast.parse(pathlib.Path(path).read_text(encoding="utf-8"), filename=path) for path in sys.argv[1:]]' \
   scripts/public_boundary_policy.py scripts/check-public-boundary \
+  scripts/test_public_boundary_policy.py \
   scripts/audit-public-hosted-metadata
+
+./scripts/run-public-check policy-tests env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts \
+  python3 -m unittest scripts/test_public_boundary_policy.py
+./scripts/run-public-check unit-tests env NODE_OPTIONS=--no-experimental-webstorage npm test
+./scripts/run-public-check typecheck npm run typecheck
+./scripts/run-public-check lint npm run lint
+./scripts/run-public-check format npm run format
+./scripts/run-public-check claims ./scripts/check-claims
+./scripts/run-public-check headers ./scripts/check-headers
+./scripts/run-public-check media ./scripts/check-media
+./scripts/run-public-check license ./scripts/check-license
+./scripts/run-public-check dependency-audit npm audit --audit-level=high
+./scripts/run-public-check production-build npm run build
+./scripts/run-public-check links ./scripts/check-links
+./scripts/run-public-check accessibility ./scripts/check-accessibility
+
 ./scripts/check-gitleaks
 PYTHONDONTWRITEBYTECODE=1 ./scripts/check-public-boundary
 printf 'repository-check: passed\n'

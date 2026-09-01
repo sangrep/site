@@ -17,15 +17,21 @@ jobs:
   check:
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Run governed foundation check
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run website check
         shell: bash
         run: |
           started=$SECONDS
           ./scripts/check
           elapsed=$((SECONDS - started))
-          printf 'elapsed_seconds=%s\ncache_result=not_applicable\n' "$elapsed"
+          printf 'elapsed_seconds=%s\ncache_result=npm\n' "$elapsed"
