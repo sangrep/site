@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if (( $# < 2 )); then
+  printf 'check-step: blocked category=invalid-invocation\n' >&2
+  exit 1
+fi
+
+label="$1"
+shift
+output=$(mktemp "${TMPDIR:-/tmp}/sangrep-site-check.XXXXXX")
+cleanup() {
+  rm -f -- "$output"
+}
+trap cleanup EXIT
+
+if "$@" >"$output" 2>&1; then
+  printf 'check-step: passed stage=%s\n' "$label"
+  exit 0
+fi
+
+printf 'check-step: blocked stage=%s; rerun the named command locally for diagnostics\n' "$label" >&2
+exit 1

@@ -1,0 +1,250 @@
+:root {
+  color-scheme: light;
+
+  --bg: #fbfcfd;
+  --surface: #ffffff;
+  --surface-2: #f3f6f9;
+  --border: #dde3ea;
+  --border-strong: #c5cdd6;
+  --control-border: #8a96a3;
+  --text: #0e1722;
+  --muted: #586271;
+  --accent: #6452e6;
+  --accent-fg: #ffffff;
+  --ok: #0a7d50;
+  --warn: #9a6f06;
+  --info: #245fbf;
+  --bad: #bb4034;
+  --cit-fg: #5a45cf;
+
+  --accent-hover: #5745d0;
+  --accent-muted: color-mix(in srgb, var(--accent) 12%, transparent);
+  --ok-muted: #e7f6ef;
+  --warn-muted: #fbf3dc;
+  --info-muted: #e9f0fc;
+  --bad-muted: #faecea;
+  --focus-ring: color-mix(in srgb, var(--accent) 52%, transparent);
+
+  --shadow-1: 0 1px 2px rgb(14 23 34 / 7%), 0 0 0 1px rgb(14 23 34 / 3%);
+  --shadow-2: 0 12px 30px rgb(14 23 34 / 12%), 0 2px 8px rgb(14 23 34 / 8%);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  --r-sm: 0.25rem;
+  --r-md: 0.375rem;
+  --r-lg: 0.625rem;
+
+  --font-size-display: 1.75rem;
+  --font-size-h1: 1.3125rem;
+  --font-size-h2: 1.0625rem;
+  --font-size-h3: 0.875rem;
+  --font-size-body: 0.84375rem;
+  --font-size-small: 0.75rem;
+  --font-size-label: 0.6875rem;
+  --font-size-mono: 0.71875rem;
+
+  --leading-display: 1.15;
+  --leading-heading: 1.25;
+  --leading-body: 1.55;
+  --weight-display: 700;
+  --weight-h1: 680;
+  --weight-h2: 650;
+  --weight-h3: 650;
+  --weight-body: 450;
+  --weight-small: 500;
+  --weight-label: 700;
+  --tracking-display: 0;
+  --tracking-label: 0.06em;
+
+  --duration-fast: 120ms;
+  --duration-panel: 180ms;
+  --motion-ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Temporary compatibility aliases until T-0092 migrates legacy page CSS. */
+  --background: var(--bg);
+  --surface-muted: var(--surface-2);
+  --text-muted: var(--muted);
+  --accent-strong: var(--accent-hover);
+  --warning: var(--warn);
+  --danger: var(--bad);
+  --resolved: var(--ok);
+  --shadow: var(--shadow-1);
+}
+
+.light {
+  color-scheme: light;
+
+  --bg: #fbfcfd;
+  --surface: #ffffff;
+  --surface-2: #f3f6f9;
+  --border: #dde3ea;
+  --border-strong: #c5cdd6;
+  --control-border: #8a96a3;
+  --text: #0e1722;
+  --muted: #586271;
+  --accent: #6452e6;
+  --accent-fg: #ffffff;
+  --ok: #0a7d50;
+  --warn: #9a6f06;
+  --info: #245fbf;
+  --bad: #bb4034;
+  --cit-fg: #5a45cf;
+
+  --accent-hover: #5745d0;
+  --accent-muted: color-mix(in srgb, var(--accent) 12%, transparent);
+  --ok-muted: #e7f6ef;
+  --warn-muted: #fbf3dc;
+  --info-muted: #e9f0fc;
+  --bad-muted: #faecea;
+  --focus-ring: color-mix(in srgb, var(--accent) 52%, transparent);
+  --shadow-1: 0 1px 2px rgb(14 23 34 / 7%), 0 0 0 1px rgb(14 23 34 / 3%);
+  --shadow-2: 0 12px 30px rgb(14 23 34 / 12%), 0 2px 8px rgb(14 23 34 / 8%);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #0c0d10;
+  --surface: #15171c;
+  --surface-2: #1c1f26;
+  --border: #262a31;
+  --border-strong: #333843;
+  --control-border: #5f6672;
+  --text: #e7e9ee;
+  --muted: #8b93a0;
+  --accent: #7c6cff;
+  --accent-fg: #0c0d10;
+  --ok: #56d79a;
+  --warn: #e4c264;
+  --info: #79bbe8;
+  --bad: #f0917f;
+  --cit-fg: #b8aeff;
+
+  --accent-hover: #9388ff;
+  --accent-muted: color-mix(in srgb, var(--accent) 15%, transparent);
+  --ok-muted: color-mix(in srgb, var(--ok) 15%, transparent);
+  --warn-muted: color-mix(in srgb, var(--warn) 15%, transparent);
+  --info-muted: color-mix(in srgb, var(--info) 15%, transparent);
+  --bad-muted: color-mix(in srgb, var(--bad) 15%, transparent);
+  --focus-ring: color-mix(in srgb, var(--accent) 62%, transparent);
+  --shadow-1: 0 0 0 1px rgb(255 255 255 / 4%);
+  --shadow-2: 0 18px 48px rgb(0 0 0 / 42%), 0 0 0 1px rgb(255 255 255 / 6%);
+}
+
+@keyframes overlay-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes overlay-exit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes backdrop-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-exit {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-control: var(--control-border);
+  --color-foreground: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-fg);
+  --color-accent-muted: var(--accent-muted);
+  --color-success: var(--ok);
+  --color-success-muted: var(--ok-muted);
+  --color-warning: var(--warn);
+  --color-warning-muted: var(--warn-muted);
+  --color-info: var(--info);
+  --color-info-muted: var(--info-muted);
+  --color-danger: var(--bad);
+  --color-danger-muted: var(--bad-muted);
+  --color-citation: var(--cit-fg);
+  --color-focus-ring: var(--focus-ring);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --text-display: var(--font-size-display);
+  --text-display--line-height: var(--leading-display);
+  --text-display--font-weight: var(--weight-display);
+  --text-h1: var(--font-size-h1);
+  --text-h1--line-height: var(--leading-heading);
+  --text-h1--font-weight: var(--weight-h1);
+  --text-h2: var(--font-size-h2);
+  --text-h2--line-height: var(--leading-heading);
+  --text-h2--font-weight: var(--weight-h2);
+  --text-h3: var(--font-size-h3);
+  --text-h3--line-height: var(--leading-heading);
+  --text-h3--font-weight: var(--weight-h3);
+  --text-body: var(--font-size-body);
+  --text-body--line-height: var(--leading-body);
+  --text-body--font-weight: var(--weight-body);
+  --text-small: var(--font-size-small);
+  --text-small--font-weight: var(--weight-small);
+  --text-label: var(--font-size-label);
+  --text-label--font-weight: var(--weight-label);
+  --text-mono: var(--font-size-mono);
+
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+
+  --shadow-sm: var(--shadow-1);
+  --shadow-md: var(--shadow-2);
+  --ease-out: var(--motion-ease-out);
+}

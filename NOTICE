@@ -1,5 +1,9 @@
-sangrep/site
+Sangrep Site
+Copyright 2026 Sangrep
 
-This foundation contains governance and verification scaffolding only. Repository-specific
-copyright, attribution, third-party, trademark, and generated-artifact notices must be completed
-and reviewed before publication.
+Website source code is licensed under the Apache License, Version 2.0.
+Sangrep names, logos, marketing copy, and designated brand artwork are
+LicenseRef-Sangrep-Brand-Content and remain all rights reserved.
+
+The site embeds Geist and Geist Mono font software. See
+THIRD_PARTY_NOTICES.md and LICENSES/OFL-1.1.txt.

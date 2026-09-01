@@ -1,0 +1,14 @@
+LicenseRef-Sangrep-Brand-Content
+
+Copyright 2026 Sangrep. All rights reserved.
+
+This designation applies to the Sangrep names, logos, marks, marketing copy,
+illustrations, screenshots, and files explicitly classified as
+LicenseRef-Sangrep-Brand-Content in this repository's license map.
+
+No license is granted to reproduce, modify, distribute, create derivative
+works from, or use this content as a trademark or brand identifier, except
+with prior written permission from Sangrep or as otherwise permitted by law.
+
+The Apache License, Version 2.0 that applies to website code does not grant
+rights in this designated brand content or in any Sangrep trademark.

@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    var(--font-geist-sans),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  letter-spacing: 0;
+}
+
+body {
+  font-size: var(--font-size-body);
+  font-weight: var(--weight-body);
+  line-height: var(--leading-body);
+}
+
+/* The site is dark-only; without this the page-level scrollbar (which lives
+   on <html>, outside the .dark token scope) gets painted as a light-mode
+   native rail. tokens.css sets color-scheme: light on :root, so this later
+   :root rule must win the cascade. */
+:root {
+  color-scheme: dark;
+}
+
+/* Overlay-style page scrollbar: invisible at rest, fades in while the user
+   scrolls (html[data-scrolling] is toggled by ScrollbarFade). The gutter is
+   always reserved, so nothing shifts when the thumb appears. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+html[data-scrolling] {
+  scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent) transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+html[data-scrolling]::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

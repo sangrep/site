@@ -1,0 +1,55 @@
+{
+  "name": "sangrep-site",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0 AND LicenseRef-Sangrep-Brand-Content",
+  "packageManager": "npm@10.9.7",
+  "repository": "https://github.com/sangrep/site",
+  "engines": {
+    "node": "22.22.2"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "preview:local": "wrangler dev --env preview --port 4173 --ip 127.0.0.1",
+    "preview:upload": "wrangler versions upload --env preview --preview-alias review",
+    "lint": "eslint",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "audit:a11y": "node scripts/check-accessibility.mjs",
+    "check": "./scripts/check"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "geist": "^1.7.2",
+    "lucide-react": "^1.22.0",
+    "next": "16.3.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "tailwind-merge": "^3.6.0"
+  },
+  "overrides": {
+    "postcss": "8.5.26"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@tailwindcss/postcss": "^4.3.2",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/node": "25.9.1",
+    "@types/react": "19.2.15",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.4",
+    "jsdom": "29.1.1",
+    "playwright": "1.62.1",
+    "prettier": "3.8.3",
+    "tailwindcss": "^4.3.2",
+    "typescript": "6.0.3",
+    "vitest": "4.1.8",
+    "wrangler": "4.128.0"
+  }
+}

@@ -1,26 +1,61 @@
 # Contributing
 
-Thank you for helping improve this component.
+Thank you for helping improve the Sangrep website.
 
 ## Before you start
 
-Small fixes, tests, examples, documentation, and accessibility improvements may go directly to a
-pull request. New API, protocol, security, licensing, or architecture behavior starts with a
-self-contained public Issue and maintainer approval. Never include private project context,
-credentials, customer material, or unreleased product details.
+Small copy fixes, tests, accessibility improvements, and focused website bugs
+may go directly to a pull request. New data collection, third-party media,
+tracking, deployment behavior, licensing, security policy, or major design
+changes start with a self-contained public Issue and maintainer approval.
+Security findings follow [SECURITY.md](SECURITY.md), never a public Issue.
 
-## Local check
+Every public artifact must stay about website business. Do not include
+credentials, customer material, private project context, non-public source
+locations, internal schedules, private conversations, or unsupported product
+claims.
 
-1. Create a focused branch with a public-safe name.
-2. Make one bounded change.
-3. Run `./scripts/check`.
-4. Open a pull request using the repository template.
+## Local setup
 
-Commits use `type(scope): summary`. Explain the public problem, verification, limitations, and
-security effects. Security findings follow [SECURITY.md](SECURITY.md).
+```sh
+nvm use
+npm ci
+npm run dev
+```
+
+The exact runtime is in `.nvmrc`. The production-style local preview is:
+
+```sh
+npm run build
+npm run preview:local
+```
+
+## Verification
+
+Run focused checks while iterating. Before opening or updating a pull request:
+
+```sh
+./scripts/check
+```
+
+The pull request must list exact checks and results, untested scope, known
+limitations, and security, privacy, license, content, or deployment effects.
+
+## Commits and pull requests
+
+- Use a public-safe branch name and conventional commit form:
+  `type(scope): summary`.
+- Link only public Issues or Discussions from public pull requests.
+- Keep each change focused and reversible.
+- Sign off commits with `git commit -s` to certify the Developer Certificate
+  of Origin.
+- Do not publish a preview URL until its content passes the same public
+  boundary as the repository.
 
 ## Licensing
 
-Contributions are accepted only under the repository's reviewed contribution and licensing terms.
-Those terms must be finalized before public source publication. Do not add third-party material
-without its exact provenance and license classification.
+Code contributions are accepted under Apache-2.0. Marketing copy, Sangrep
+names and logos, and designated brand artwork remain
+LicenseRef-Sangrep-Brand-Content. A contribution must not add third-party
+material without exact provenance, redistribution permission, and an updated
+license classification.
