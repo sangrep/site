@@ -5,10 +5,30 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from public_boundary_policy import scan_bytes, scan_path
+from public_boundary_policy import (
+    normalize_github_actions_log,
+    scan_bytes,
+    scan_path,
+)
 
 
 class GeneratedMediaPolicyTests(unittest.TestCase):
+    def test_normalizes_only_github_managed_runner_paths(self) -> None:
+        runner_root = "/" + "home" + "/runner"
+        private_root = "/" + "home" + "/person"
+        payload = (
+            f"workspace={runner_root}/work/site/site/.git/path\n"
+            f"cache={runner_root}/.npm\n"
+            f"temp={runner_root}/work/_temp/"
+            "02969a6a-e741-42c8-a35b-730b1dc57d30/cache.tzst\n"
+            f"private={private_root}/private-file\n"
+        ).encode()
+
+        normalized = normalize_github_actions_log(payload).decode()
+
+        self.assertNotIn(runner_root, normalized)
+        self.assertIn(f"{private_root}/private-file", normalized)
+
     def test_accepts_valid_font_headers_and_rejects_malformed_fonts(self) -> None:
         self.assertEqual(
             scan_bytes(

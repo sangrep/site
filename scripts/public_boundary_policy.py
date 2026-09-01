@@ -150,6 +150,32 @@ SECRET_RULES = (
     ),
 )
 
+_GITHUB_ACTIONS_UUID = rb"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+_GITHUB_ACTIONS_PATH_RULES = (
+    (
+        re.compile(rb"/home/runner/work/site/site(?:/[A-Za-z0-9_.*+@%=-]+)*"),
+        b"<github-workspace>",
+    ),
+    (
+        re.compile(
+            rb"/home/runner/work/_temp/(?:"
+            + _GITHUB_ACTIONS_UUID
+            + rb"(?:/cache\.tzst)?|git-credentials-"
+            + _GITHUB_ACTIONS_UUID
+            + rb"\.config)"
+        ),
+        b"<github-temp>",
+    ),
+    (re.compile(rb"/home/runner/\.npm"), b"<github-npm-cache>"),
+)
+
+
+def normalize_github_actions_log(data: bytes) -> bytes:
+    normalized = data
+    for pattern, replacement in _GITHUB_ACTIONS_PATH_RULES:
+        normalized = pattern.sub(replacement, normalized)
+    return normalized
+
 
 def scan_text(text: str, *, source: str, include_restricted: bool = True) -> list[Finding]:
     record_id = opaque_record_id(source)
