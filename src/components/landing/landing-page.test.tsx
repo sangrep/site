@@ -31,7 +31,7 @@ describe("LandingPage", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getAllByRole("button", { name: "Join the research list" }),
+      screen.getAllByRole("button", { name: "Continue to Google Form" }),
     ).toHaveLength(2);
 
     for (const unsupported of [

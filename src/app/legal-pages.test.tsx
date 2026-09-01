@@ -17,7 +17,10 @@ describe("public website legal pages", () => {
     expect(
       screen.getByRole("heading", { name: "Privacy notice" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/Google Forms/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Google Forms/).length).toBeGreaterThan(0);
+    expect(
+      screen.getByText(/review and submit the form there/i),
+    ).toBeInTheDocument();
     expect(screen.getAllByText(/Cloudflare/).length).toBeGreaterThan(0);
     expect(document.body.textContent).not.toMatch(
       /beta product|documents you upload|AI model providers|account details/i,

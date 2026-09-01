@@ -25,10 +25,10 @@ export default function PrivacyPage() {
       </LegalSection>
       <LegalSection title="Information collected">
         <p className="m-0">
-          If you join the research list, we collect the email address you
-          submit. If you open the optional follow-up form, we also collect the
-          answers you choose to provide. These responses are handled through
-          Google Forms.
+          The landing page can open Google Forms with the email address you
+          entered prefilled. Google receives your response only after you review
+          and submit the form there. We collect that email address and any
+          optional research answers you choose to provide through Google Forms.
         </p>
         <p className="m-0">
           Cloudflare hosts the website and may process standard request
@@ -54,8 +54,8 @@ export default function PrivacyPage() {
       <LegalSection title="Cookies and analytics">
         <p className="m-0">
           The website does not include advertising trackers or a site analytics
-          script. Opening the optional Google form takes you to a third-party
-          service governed by its own terms and privacy practices.
+          script. Continuing to Google Forms takes you to a third-party service
+          governed by its own terms and privacy practices.
         </p>
       </LegalSection>
       <LegalSection title="Retention and deletion">

@@ -13,7 +13,7 @@ const FAQS: { answer: ReactNode; question: string }[] = [
   },
   {
     answer:
-      "We collect the email address you submit through Google Forms and may send occasional research or availability updates. Joining does not create an account, entitlement, trial, or product access.",
+      "The website opens Google Forms with your email address prefilled. You review and submit it there before anything is recorded. We may send occasional research or availability updates. Joining does not create an account, entitlement, trial, or product access.",
     question: "What happens when I join the research list?",
   },
   {
